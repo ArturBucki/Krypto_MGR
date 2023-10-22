@@ -1,0 +1,173 @@
+\documentclass[12pt, a4paper, onside, polish]{article}				% Wylad dokumentu
+\usepackage[utf8]{inputenc}					% Format, utf8
+\usepackage[polish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage{tocloft}
+\usepackage{graphicx}
+\usepackage{cmap}
+\usepackage{biblatex}
+\usepackage{etoolbox}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{amsmath}
+\usepackage{mwe}
+\usepackage{hyperref}
+\usepackage[draft,nosingleletter]{impnattypo}
+\usepackage{float} % here for H placement parameter
+\usepackage{caption}
+
+\newcommand{\source}[1]{\caption*{Source: {#1}} }
+
+\setlength\parindent{24pt}
+\patchcmd{\thebibliography}{\section*}{\section}{}{}
+\patchcmd{\listoftables}{\section*}{\section}{}{}
+
+
+
+\addbibresource{sample.bib}
+\catcode`\_=12 % change catcode of "_" to "other" (no. 12)
+\graphicspath{ {./images/} }
+\title{Sekcja i rozdziały}						% Strona tytulowa						
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+
+
+
+\begin{document}
+
+\begin{titlepage}
+	\begin{center}
+	
+		\includegraphics[width=5cm, height=5cm]{w_uwb_kolor}
+		
+		\vspace{2cm}
+
+	
+		\Huge
+        		\textbf{Uniwersytet w Białymstoku}
+        		
+        		\vspace{0.5cm}
+        		\LARGE
+        		Instytut Informatyki
+        		
+        		\vspace{1cm}
+        		\LARGE
+        		 Interaktywny, multimedialny system szkoleniowo-doradczy poświęcony tematyce kryptowalut 
+        		
+        		\vspace{1.5cm}
+        		\large
+        		Artur Bucki
+        		
+        		\large
+        		Numer albumu: 80212
+        		
+        		\vspace{0.5cm}
+        		
+		\begin{flushright}
+		Promotor:\\
+		dr hab. prof.UwB Anna Gomolińska\\
+		\end{flushright}
+
+
+		\vspace*{\fill}
+		\large
+		Białystok 2022r
+        		
+	\end{center}
+\end{titlepage}
+
+
+
+
+
+\tableofcontents
+\cleardoublepage
+
+
+\section{Wstęp}
+\subsection{Kontekst badawczy}
+\subsection{Cele pracy}
+\subsection{Struktura pracy}
+
+\section{Plan pracy}
+\subsection{Struktura pracy}
+\subsection{Cele i zakres badań}
+\subsection{Plan badań}
+
+\section{Kryptowaluty: Podstawy i Historia}
+\subsection{Definicja kryptowalut}
+\subsection{Historia rozwoju kryptowalut}
+\subsection{Technologia blockchain}
+\subsection{Algorytmy kryptograficzne}
+\subsubsection{Proof of Work (PoW)}
+\subsubsection{Proof of Stake (PoS)}
+\subsubsection{Inne algorytmy}
+\subsection{Popularne kryptowaluty}
+\subsubsection{Bitcoin (BTC)}
+\subsubsection{Ethereum (ETH)}
+\subsubsection{Ripple (XRP)}
+\subsubsection{Litecoin (LTC)}
+\subsubsection{Bitcoin Cash (BCH)}
+\subsection{Struktura i budowa kryptowalut}
+
+\section{Wykorzystane technologie i narzędzia informatyczne}
+\subsection{Framework Django}
+\subsection{Narzędzia Adobe (Premiere Pro, Photoshop)}
+\subsection{Inne narzędzia i technologie informatyczne}
+
+\section{Opis aplikacji (instrukcja obsługi)}
+\subsection{Interaktywna platforma szkoleniowo-doradcza}
+\subsection{Opis funkcji i użytkowania aplikacji}
+
+\section{Przegląd podobnych aplikacji i porównanie}
+\subsection{Zestawienie cech istniejących aplikacji}
+\subsection{Badanie użytkowników i ankiety}
+\subsection{Analiza statystyczna wyników badań}
+
+\section{Testowanie i Ewaluacja Systemu}
+\subsection{Plan testów}
+\subsection{Badania użytkowników}
+\subsection{Ocena skuteczności systemu}
+
+\section{Szkolenie i Doradztwo w Kontekście Kryptowalut}
+\subsection{Znaczenie edukacji w dziedzinie kryptowalut}
+\subsection{Istniejące metody szkolenia i doradztwa}
+\subsection{Potencjalne korzyści z interaktywnego, multimedialnego podejścia}
+
+\section{Perspektywy Rozwoju Systemu}
+\subsection{Możliwości rozwoju systemu}
+\subsection{Prognozy dla przyszłości kryptowalut}
+\subsection{Wyzwania i zagrożenia}
+
+\section{Podsumowanie}
+\subsection{Podsumowanie pracy}
+\subsection{Osiągnięte cele}
+\subsection{Wnioski i perspektywy rozwoju}
+\subsection{Dalsze kierunki badawcze}
+
+
+
+\cleardoublepage
+
+
+
+\begin{thebibliography}{100}
+\bibitem{skorupski2000podstawy} Skorupski, A., 2000. Podstawy budowy i działania komputerów. Wydawnictwa Komunikacji i Łączności.
+
+
+
+\end{thebibliography}
+
+
+\cleardoublepage
+\section{Spis tablic/rysunków}
+\begin{appendix}
+\listoftables
+\listoffigures
+\end{appendix}
+
+\cleardoublepage
+
+
+
+\end{document}
