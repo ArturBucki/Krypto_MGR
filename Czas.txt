@@ -1,0 +1,17 @@
+SEMESTR ZIMOWY 01.10.2023 - 21.02.2024
+Praktyka - 50% - Grudzień
+Praktyka - 100% - Styczeń
+Tematy praktyczne: 3.technologie I narzędia informatyczne wykorzystane w pracy
+		   4.Projekt I implementacja systemu(fragmenty kodu, baza danych, użytkownicy) - LUTY
+
+SEMESTR LETNI 22.02.2024 - 30.09.2024
+TEORIA
+1. Wprowadzenie do tematyki kryptowalut - Marzec
+2. O systemach szkoleniowych I doradczych - Marzec
+5. Opis systemy informatycznego(podział na role, admin, login, opis tego) Kwiecień
+6. Badania systemu(różne testy, badania uzytkowników) Kwiecień
+7. Podsumowanie Maj
+
+
+
+
