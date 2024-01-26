@@ -14,6 +14,7 @@ import { useSession } from "next-auth/react";
 import { useLogOutQuery, useSocialAuthMutation } from "@/redux/features/auth/authApi";
 import { toast } from "react-hot-toast";
 import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
+import Loader from "./Loader/Loader";
 
 type Props = {
   open: boolean;
@@ -55,7 +56,7 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
           setLogout(true);
       }
     }
-  }, [data, userData]);
+  }, [data, userData,isLoading]);
 
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {
@@ -77,7 +78,10 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
 
   return (
    <>
-
+   {
+    isLoading ? (
+      <Loader />
+    ) : (
       <div className="w-full relative">
       <div
         className={`${
@@ -208,6 +212,8 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
         </>
       )}
     </div>
+    )
+   }
    </>
   );
 };

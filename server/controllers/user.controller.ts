@@ -179,12 +179,16 @@ export const loginUser = CatchAsyncError(
 export const logoutUser = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
+      console.log("Przed usuwaniem plików cookie");
       res.cookie("access_token", "", { maxAge: 1 });
       res.cookie("refresh_token", "", { maxAge: 1 });
+      console.log("Plik cookie usunięte");
 
       const userId = req.user?._id || "";
+      console.log("Przed usuwaniem z Redis");
       console.log(req.user);
       redis.del(userId);
+      console.log("Usunięto z Redis");
 
       res.status(200).json({
         success: true,
