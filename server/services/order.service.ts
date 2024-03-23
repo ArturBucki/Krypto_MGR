@@ -1,6 +1,6 @@
 import { NextFunction, Response } from "express";
 import { CatchAsyncError } from "../middleware/catchAsyncErrors";
-import OrderModel from "../models/orderModel";
+import OrderModel from "../models/order.Model";
 import CourseModel from "../models/course.model";
 
 // Stworz nowe zamowienie

@@ -1,8 +1,15 @@
 "use client";
 import { ThemeSwitcher } from "@/app/utils/ThemeSwitcher";
+import {
+  useGetAllNotificationsQuery,
+  useUpdateNotificationStatusMutation,
+} from "@/redux/features/notifications/notificationsApi";
 import React, { FC, useEffect, useState } from "react";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import socketIO from "socket.io-client";
+import { format } from "timeago.js";
 const ENDPOINT = process.env.NEXT_PUBLIC_SOCKET_SERVER_URI || "";
+const socketId = socketIO(ENDPOINT, { transports: ["websocket"] });
 
 type Props = {
   open?: boolean;
@@ -10,22 +17,44 @@ type Props = {
 };
 
 const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
+  const { data, refetch } = useGetAllNotificationsQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
+  const [updateNotificationStatus, { isSuccess }] =
+    useUpdateNotificationStatusMutation();
   const [notifications, setNotifications] = useState<any>([]);
+  const [audio] = useState<any>(
+    typeof window !== "undefined" &&
+      new Audio(
+        "https://res.cloudinary.com/damk25wo5/video/upload/v1693465789/notification_vcetjn.mp3"
+      )
+  );
 
   const playNotificationSound = () => {
-    // Usunięto fragment kodu audio, ponieważ jest on niepotrzebny w tym kontekście.
+    audio.play();
   };
 
   useEffect(() => {
-    // Usunięto kod dotyczący zapytań GraphQL, ponieważ nie jest on istotny w tym kontekście.
-  }, [notifications]);
+    if (data) {
+      setNotifications(
+        data.notifications.filter((item: any) => item.status === "unread")
+      );
+    }
+    if (isSuccess) {
+      refetch();
+    }
+    audio.load();
+  }, [data, isSuccess,audio]);
 
   useEffect(() => {
-    // Usunięto kod dotyczący socket.io, ponieważ nie jest on istotny w tym kontekście.
+    socketId.on("newNotification", (data) => {
+      refetch();
+      playNotificationSound();
+    });
   }, []);
 
   const handleNotificationStatusChange = async (id: string) => {
-    // Usunięto kod dotyczący aktualizacji statusu powiadomienia, ponieważ nie jest on istotny w tym kontekście.
+    await updateNotificationStatus(id);
   };
 
   return (
@@ -64,6 +93,7 @@ const DashboardHeader: FC<Props> = ({ open, setOpen }) => {
                   {item.message}
                 </p>
                 <p className="p-2 text-black dark:text-white text-[14px]">
+                  {format(item.createdAt)}
                 </p>
               </div>
             ))}

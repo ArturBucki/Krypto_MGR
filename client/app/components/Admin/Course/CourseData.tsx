@@ -1,6 +1,6 @@
 import { styles } from "@/app/styles/style";
 import React, { FC } from "react";
-import { AiOutlinePlusCircle } from "react-icons/ai";
+import {AiOutlinePlusCircle} from "react-icons/ai";
 import { toast } from "react-hot-toast";
 
 type Props = {
@@ -20,6 +20,7 @@ const CourseData: FC<Props> = ({
   active,
   setActive,
 }) => {
+
   const handleBenefitChange = (index: number, value: any) => {
     const updatedBenefits = [...benefits];
     updatedBenefits[index].title = value;
@@ -31,9 +32,12 @@ const CourseData: FC<Props> = ({
   };
 
   const handlePrerequisitesChange = (index: number, value: any) => {
+    console.log("Current prerequisites:", prerequisites); // Loguje aktualny stan prerequisites przed aktualizacją
     const updatedPrerequisites = [...prerequisites];
     updatedPrerequisites[index].title = value;
     setPrerequisites(updatedPrerequisites);
+    console.log("Updated prerequisites:", updatedPrerequisites); // Loguje zaktualizowany stan prerequisites po aktualizacji
+
   };
 
   const handleAddPrerequisites = () => {
@@ -42,24 +46,22 @@ const CourseData: FC<Props> = ({
 
   const prevButton = () => {
     setActive(active - 1);
-  };
+  }
 
   const handleOptions = () => {
-    if (
-      benefits[benefits.length - 1]?.title !== "" &&
-      prerequisites[prerequisites.length - 1]?.title !== ""
-    ) {
+    if (benefits[benefits.length - 1]?.title !== "" && prerequisites[prerequisites.length - 1]?.title !== "") {
       setActive(active + 1);
-    } else {
-      toast.error("Proszę wypełnić pola, aby przejść dalej!");
+    } else{
+        toast.error("Please fill the fields for go to next!")
     }
   };
+  
 
   return (
     <div className="w-[80%] m-auto mt-24 block">
       <div>
         <label className={`${styles.label} text-[20px]`} htmlFor="email">
-          Jakie są korzyści dla studentów z tego kursu?
+          What are the benefits for students in this course?
         </label>
         <br />
         {benefits.map((benefit: any, index: number) => (
@@ -67,7 +69,7 @@ const CourseData: FC<Props> = ({
             type="text"
             key={index}
             name="Benefit"
-            placeholder="Będziesz w stanie zbudować pełen stos technologiczny platformy LMS..."
+            placeholder="You will be able to build a full stack LMS Platform..."
             required
             className={`${styles.input} my-2`}
             value={benefit.title}
@@ -82,38 +84,39 @@ const CourseData: FC<Props> = ({
 
       <div>
         <label className={`${styles.label} text-[20px]`} htmlFor="email">
-          Jakie są wymagania wstępne do rozpoczęcia tego kursu?
+        What are the prerequisites for starting this course?
         </label>
         <br />
-        {prerequisites.map((prerequisite: any, index: number) => (
+        {prerequisites.map((prerequisites: any, index: number) => (
           <input
             type="text"
             key={index}
             name="prerequisites"
-            placeholder="Potrzebna jest podstawowa wiedza z zakresu stosu technologicznego MERN"
+            placeholder="You need basic knowledge of MERN stack"
             required
             className={`${styles.input} my-2`}
-            value={prerequisite.title}
+            value={prerequisites.title}
             onChange={(e) => handlePrerequisitesChange(index, e.target.value)}
           />
         ))}
         <AiOutlinePlusCircle
           style={{ margin: "10px 0px", cursor: "pointer", width: "30px" }}
+
           onClick={handleAddPrerequisites}
         />
       </div>
       <div className="w-full flex items-center justify-between">
-        <div
+      <div
           className="w-full 800px:w-[180px] flex items-center justify-center h-[40px] bg-[#37a39a] text-center text-[#fff] rounded mt-8 cursor-pointer"
           onClick={() => prevButton()}
         >
-          Poprzedni
+          Prev
         </div>
         <div
           className="w-full 800px:w-[180px] flex items-center justify-center h-[40px] bg-[#37a39a] text-center text-[#fff] rounded mt-8 cursor-pointer"
           onClick={() => handleOptions()}
         >
-          Następny
+          Next
         </div>
       </div>
     </div>

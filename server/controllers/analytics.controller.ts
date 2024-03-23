@@ -4,7 +4,7 @@ import { CatchAsyncError } from "../middleware/catchAsyncErrors";
 import { generateLast12MonthsData } from "../utils/analytics.generator";
 import userModel from "../models/user.model";
 import CourseModel from "../models/course.model";
-import OrderModel from "../models/orderModel";
+import OrderModel from "../models/order.Model";
 
 
 

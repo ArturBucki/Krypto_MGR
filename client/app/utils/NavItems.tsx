@@ -2,28 +2,27 @@ import Link from "next/link";
 import React from "react";
 
 export const navItemsData = [
-    {
-      name: "Strona Główna",
-      url: "/",
-    },
-    {
-      name: "Kursy",
-      url: "/courses",
-    },
-    {
-      name: "O nas",
-      url: "/about",
-    },
-    {
-      name: "Polityka",
-      url: "/policy",
-    },
-    {
-      name: "FAQ",
-      url: "/faq",
-    },
-  ];
-  
+  {
+    name: "Home",
+    url: "/",
+  },
+  {
+    name: "Courses",
+    url: "/courses",
+  },
+  {
+    name: "About",
+    url: "/about",
+  },
+  {
+    name: "Policy",
+    url: "/policy",
+  },
+  {
+    name: "FAQ",
+    url: "/faq",
+  },
+];
 
 type Props = {
   activeItem: number;

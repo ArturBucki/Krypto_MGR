@@ -259,10 +259,8 @@ export const updateAccessToken = CatchAsyncError(
 
       await redis.set(user._id, JSON.stringify(user), "EX", 604800); // 7dni
 
-      res.status(200).json({
-        status: "success",
-        accessToken,
-      });
+    next();
+
     } catch (error: any) {
       return next(new ErrorHandler(error.message, 400));
     }
@@ -472,13 +470,21 @@ export const getAllUsers = CatchAsyncError(
 // update user role - admin
 export const updateUserRole = CatchAsyncError(async(req:Request, res:Response, next:NextFunction) => {
   try {
-    const {id, role} = req.body;
-    updateUserRoleService(res, id, role);
-
+    const {email, role} = req.body;
+    const isUserExist = await userModel.findOne({ email })
+    if(isUserExist){
+      const id = isUserExist._id;
+      updateUserRoleService(res, id, role);
+    }else{
+      res.status(400).json({
+        success:false,
+        message:"User not found"
+      })
+    }
   } catch (error:any) {
     return next(new ErrorHandler(error.message, 400));
   }
-})
+});
 
 
 // Delete user admin
